@@ -1,4 +1,6 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     require 'vendor/autoload.php';
     use GuzzleHttp\Client;
     $client = new Client([
@@ -19,3 +21,4 @@
             echo $e->getRequest()->getMethod();
         }
     );
+    echo '<h1>Promises</h1>';
