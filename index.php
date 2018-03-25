@@ -23,4 +23,4 @@
     );
     */
     echo '<h1>Promises</h1>';
-    echo $response;
+    echo $response ->getBody();
