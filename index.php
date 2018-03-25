@@ -4,11 +4,11 @@
     require 'vendor/autoload.php';
     use GuzzleHttp\Client;
     $client = new Client([
-        // Base URI is used with relative requests
         'base_uri' => 'https://kodaktor.ru',
-        // You can set any number of default request options.
         'timeout'  => 2.0,
     ]);
+    $response = $client->get('/api/req?name=Heroku');
+    /*
     use Psr\Http\Message\ResponseInterface;
     use GuzzleHttp\Exception\RequestException;
     $promise = $client->requestAsync('GET', '/api/req?name=Heroku');
@@ -21,4 +21,6 @@
             echo $e->getRequest()->getMethod();
         }
     );
+    */
     echo '<h1>Promises</h1>';
+    echo $response;
