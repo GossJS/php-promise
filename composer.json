@@ -1,0 +1,15 @@
+{
+    "name": "eliasgoss/20180326_023106",
+    "description": "promises",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gossoudarev",
+            "email": "igossoudarev@herzen.spb.ru"
+        }
+    ]
+}
