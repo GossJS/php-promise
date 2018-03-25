@@ -5,13 +5,13 @@
     use GuzzleHttp\Client;
     $client = new Client([
         // Base URI is used with relative requests
-        'base_uri' => 'http://kodaktor.ru',
+        'base_uri' => 'https://kodaktor.ru',
         // You can set any number of default request options.
         'timeout'  => 2.0,
     ]);
     use Psr\Http\Message\ResponseInterface;
     use GuzzleHttp\Exception\RequestException;
-    $promise = $client->requestAsync('GET', '/j/users');
+    $promise = $client->requestAsync('GET', '/api/req?name=Heroku');
     $promise->then(
         function (ResponseInterface $res) {
             echo $res->getBody() . "\n";
