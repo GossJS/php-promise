@@ -36,4 +36,4 @@
         $curl->tick();
         sleep(1);
     }
-    echo '<h1>Promises</h1>';
+    echo '<h1>Waiting for Godot</h1>';
