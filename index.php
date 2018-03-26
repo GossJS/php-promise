@@ -27,5 +27,5 @@
             echo $e->getRequest()->getMethod();
         }
     );
-    $promise->wait();
+    $promise->tick();
     echo '<h1>Promises</h1>';
