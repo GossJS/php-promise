@@ -11,13 +11,12 @@
         'base_uri' => 'https://kodaktor.ru'
     ]);
   
-    $req = new Request('POST', '/api/req' . $name, [], [
+    $promise = $client
+    ->requestAsync('POST', '/api/req', [
         'form_params' => [
             'name' => $name
         ]
-    ]);
-    $promise = $client
-    ->sendAsync($req)
+    ])
     ->then(
         function ($res) {
             $result = json_decode($res ->getBody());
