@@ -8,17 +8,13 @@
     
     $name = $_GET['name'] ?? 'Herokuist';
     $client = new Client([
-        'base_uri' => 'https://kodaktor.ru',
-        'timeout'  => 2.0,
+        'base_uri' => 'https://kodaktor.ru'
     ]);
-    $headers = ['Client' => 'Elias@Heroku'];
-
-    // $promise = $client->sendAsync($req)->then(function ($res) {
-    //     echo 'I completed! ' . $res->getBody();
-    // });
+  
     $req = new Request('GET', '/api/req?name=' . $name);
-    $promise = $client->sendAsync($req);
-    $promise->then(
+    $promise = $client
+    ->sendAsync($req)
+    ->then(
         function ($res) {
             $result = json_decode($res ->getBody());
             echo '<h2>' . $result -> name . '</h2>'; 
