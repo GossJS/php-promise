@@ -13,7 +13,9 @@
         'timeout'  => 2.0,
     ]);
     $headers = ['Client' => 'Elias@Heroku'];
-    $body = 'name=' . $name;
+    $body = [
+            'name' => $name
+    ];
     // $request = new Request('POST', '/api/req', [
     //  "json" => [
     //    'name' => $name]
