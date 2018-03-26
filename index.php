@@ -27,5 +27,6 @@
             echo $e->getRequest()->getMethod();
         }
     );
-    $promise->tick();
+    $queue = \GuzzleHttp\Promise\queue();
+    $queue->run();
     echo '<h1>Promises</h1>';
