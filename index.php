@@ -32,5 +32,8 @@
             echo $e->getRequest()->getMethod();
         }
     );
-    $curl->tick();
+    while ($promise->getState() === 'pending') {
+        $curl->tick();
+        sleep(1);
+    }
     echo '<h1>Promises</h1>';
