@@ -4,7 +4,6 @@
     require 'vendor/autoload.php';
     use GuzzleHttp\Client;
     use GuzzleHttp\Psr7\Request;
-    use Psr\Http\Message\ResponseInterface;
     use GuzzleHttp\Exception\RequestException;
     
     $name = $_GET['name'] ?? 'Herokuist';
@@ -14,13 +13,13 @@
     ]);
     $headers = ['Client' => 'Elias@Heroku'];
 
-    // $promise = $client->sendAsync($request)->then(function ($response) {
-    //     echo 'I completed! ' . $response->getBody();
+    // $promise = $client->sendAsync($req)->then(function ($res) {
+    //     echo 'I completed! ' . $res->getBody();
     // });
-    $request = new Request('GET', '/api/req?name=' . $name);
-    $promise = $client->sendAsync($request);
+    $req = new Request('GET', '/api/req?name=' . $name);
+    $promise = $client->sendAsync($req);
     $promise->then(
-        function (ResponseInterface $res) {
+        function ($res) {
             $result = json_decode($res ->getBody());
             echo '<h2>' . $result -> name . '</h2>'; 
         },
