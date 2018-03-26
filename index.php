@@ -8,14 +8,11 @@
     use GuzzleHttp\Exception\RequestException;
     
     $name = $_GET['name'] ?? 'Herokuist';
-    $client = new Client([
-        'base_uri' => 'https://kodaktor.ru',
-        'timeout'  => 2.0,
-    ]);
-    $headers = ['Clinet' => 'Elias@Heroku'];
+    $client = new Client();
+    $headers = ['Client' => 'Elias@Heroku'];
     $body = 'Hello!';
-    $request = new Request('POST', '/api/req?name=' . $name, $headers, $body);
-    $promise = $client->requestAsync($request);
+    $promise = new Request('POST', 'https://kodaktor.ru/api/req?name=' . $name, $headers, $body);
+    // $promise = $client->requestAsync($request);
     $promise->then(
         function (ResponseInterface $res) {
             $result = json_decode($response ->getBody());
