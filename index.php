@@ -13,11 +13,16 @@
         'timeout'  => 2.0,
     ]);
     $headers = ['Client' => 'Elias@Heroku'];
-    $body = 'name=' . $name;
-    // $promise = new Request('POST', 'https://kodaktor.ru/api/req', $headers, $body);
-    // $promise = $client->requestAsync($request);
-    // $promise = $client->requestAsync('POST', 'https://kodaktor.ru/api/req?name=' . $name);
-    $promise = $client->postAsync('/api/req?name=' . $name, $headers, $body);
+    $request = new Request('POST', '/api/req', [
+      "json" => [
+        'name' => $name]
+      ]);
+
+    // $promise = $client->sendAsync($request)->then(function ($response) {
+    //     echo 'I completed! ' . $response->getBody();
+    // });
+
+    $promise = $client->sendAsync($request);
     $promise->then(
         function (ResponseInterface $res) {
             $result = json_decode($res ->getBody());
