@@ -4,11 +4,16 @@
     require 'vendor/autoload.php';
     use GuzzleHttp\Client;
     use GuzzleHttp\Psr7\Request;
-    use GuzzleHttp\Exception\RequestException;
+    use GuzzleHttp\Handler\CurlMultiHandler;
+    use GuzzleHttp\HandlerStack;
     
     $name = $_GET['name'] ?? 'Herokuist';
+    $curl = new CurlMultiHandler(['select_timeout' => 10]);
+    $handler = HandlerStack::create($curl);
+
     $client = new Client([
-        'base_uri' => 'https://kodaktor.ru'
+        'base_uri' => 'https://kodaktor.ru',
+        'handler' => $handler
     ]);
   
     $promise = $client
@@ -22,11 +27,10 @@
             $result = json_decode($res ->getBody());
             echo '<h2>' . $result -> name . '</h2>'; 
         },
-        function (RequestException $e) {
+        function ($e) {
             echo $e->getMessage() . "\n";
             echo $e->getRequest()->getMethod();
         }
     );
-    $queue = \GuzzleHttp\Promise\queue();
-    $queue->run();
+    $curl->tick();
     echo '<h1>Promises</h1>';
