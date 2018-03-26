@@ -11,7 +11,11 @@
         'base_uri' => 'https://kodaktor.ru'
     ]);
   
-    $req = new Request('GET', '/api/req?name=' . $name);
+    $req = new Request('POST', '/api/req' . $name, [], [
+        'form_params' => [
+            'name' => $name
+        ]
+    ]);
     $promise = $client
     ->sendAsync($req)
     ->then(
