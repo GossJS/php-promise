@@ -13,7 +13,8 @@
     $body = 'Hello!';
     // $promise = new Request('POST', 'https://kodaktor.ru/api/req?name=' . $name, $headers, $body);
     // $promise = $client->requestAsync($request);
-    $promise = $client->requestAsync('POST', 'https://kodaktor.ru/api/req?name=' . $name);
+    // $promise = $client->requestAsync('POST', 'https://kodaktor.ru/api/req?name=' . $name);
+    $promise = $client->getAsync('https://kodaktor.ru/api/req?name=' . $name);
     $promise->then(
         function (ResponseInterface $res) {
             $result = json_decode($response ->getBody());
