@@ -13,15 +13,16 @@
         'timeout'  => 2.0,
     ]);
     $headers = ['Client' => 'Elias@Heroku'];
-    $request = new Request('POST', '/api/req', [
-      "json" => [
-        'name' => $name]
-      ]);
+    $body = 'name=' . $name;
+    // $request = new Request('POST', '/api/req', [
+    //  "json" => [
+    //    'name' => $name]
+    //  ]);
 
     // $promise = $client->sendAsync($request)->then(function ($response) {
     //     echo 'I completed! ' . $response->getBody();
     // });
-
+    $request = new Request('POST', '/api/req', $headers, $body);
     $promise = $client->sendAsync($request);
     $promise->then(
         function (ResponseInterface $res) {
